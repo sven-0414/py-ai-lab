@@ -35,7 +35,7 @@ for product in products:
 
 
 print(
-    f"Total value of products: {total_value}\nProduct with highest price: {max_name}."
+    f"Total value of products: {total_value}\nProduct with highest price: {max_name}.\n\n"
 )
 
 
@@ -60,6 +60,21 @@ scores = [78, 92, 55, 81, 67, 95, 73]
 
 
 # Write your solution below:
+def calculate_average(numbers: list):
+    return sum(numbers) / len(numbers)
+
+
+def create_result(numbers: list):
+    average = calculate_average(scores)
+    if average >= 70:
+        return "PASS"
+    else:
+        return "FAIL"
+
+
+print(
+    f"Average score: {calculate_average(scores)}\nResult: {create_result(scores)}\n\n"
+)
 
 
 # ==================================================
