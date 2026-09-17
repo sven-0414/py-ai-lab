@@ -65,7 +65,7 @@ def calculate_average(numbers: list):
 
 
 def create_result(numbers: list):
-    average = calculate_average(scores)
+    average = calculate_average(numbers)
     if average >= 70:
         return "PASS"
     else:
@@ -107,7 +107,26 @@ order_settings = {"discount": 10, "shipping": 49, "priority": True}
 
 
 # Write your solution below:
+def calculate_order(name, *args, **kwargs):
+    sub_total = sum(args)
+    if kwargs["discount"] > 0:
+        discount = sub_total * kwargs["discount"] / 100
+    else:
+        discount = 0
+    if kwargs["shipping"] > 0:
+        shipping = kwargs["shipping"]
+    else:
+        shipping = 0
 
+    return {
+        "customer": name,
+        "subtotal": sub_total,
+        "final_total": sub_total + shipping - discount,
+        "settings": kwargs,
+    }
+
+
+print(calculate_order("Anna", *product_prices, **order_settings))
 
 # ==================================================
 # TASK 4
