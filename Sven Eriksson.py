@@ -167,3 +167,10 @@ players = [
 
 
 # Write your solution below:
+new_list = [player["name"].strip().capitalize() for player in players]
+
+active_players = [
+    player["name"] for player in players if player["active"] and player["score"] > 80
+]
+
+# # I have not done the last lab yet and therefor can not to the lamba and zip tasks.
