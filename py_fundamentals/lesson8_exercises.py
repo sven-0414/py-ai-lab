@@ -1,10 +1,38 @@
-# Part A - Mutable default arguments
-# 1. Create a BadTeam class with name and a default parameter members=[]. Add an add_member()
-# method.
-# 2. Create two BadTeam objects without providing a members list. Add a member to only one team and
-# print both lists. Explain in a comment what happened.
-# 3. Create a corrected Team class using None as the default value and create a new list inside __init__.
-# 4. Repeat the test with two Team objects and show that each object now has its own list.
+# # Part A - Mutable default arguments
+# # 1. Create a BadTeam class with name and a default parameter members=[]. Add an add_member()
+# # method.
+# # 2. Create two BadTeam objects without providing a members list. Add a member to only one team and
+# # print both lists. Explain in a comment what happened.
+# # 3. Create a corrected Team class using None as the default value and create a new list inside __init__.
+# # 4. Repeat the test with two Team objects and show that each object now has its own list.
+
+
+# class BadTeam:
+#     def __init__(self, name, members=[]):
+#         self.name = name
+#         self.members = members
+
+#     def add_member(self, name):
+#         self.members.append(name)
+
+
+# team_bad = BadTeam("Bad Developing")
+# team_evil = BadTeam("Evil Developing")
+
+# team_bad.add_member("Ada Lovelace")
+
+# print(team_bad.members)
+# print(team_evil.members)  # Both instances refer to the same list object
+
+# # Correct version
+# class Team:
+#     def __init__(self, name, members=None):
+#         self.name = name
+#         self.members = members if members is not None else []
+
+#     def add_member(self, member):
+#         self.members.append(member)
+
 
 # Part B - Dictionary or class?
 # 1. Represent a movie using a dictionary with title, director and rating.
