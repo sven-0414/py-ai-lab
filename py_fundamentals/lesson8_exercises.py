@@ -48,12 +48,6 @@
 #     "rating": 8.8,
 # }
 
-# movie_dict = {
-#     "title": "Inception",
-#     "director": "Christopher Nolan",
-#     "rating": 8.8,
-# }
-
 
 # class Movie:
 #     def __init__(self, title, director, rating):
@@ -74,42 +68,84 @@
 # # Choose class: when the data has behavior or many objects of the same kind
 # # are needed, e.g. a movie catalog where every movie has the same fields and methods.
 
-# Part C - Inheritance fundamentals
-# 1. Create a base class Account with owner and balance.
-# 2. Create SavingsAccount(Account) with an additional interest_rate attribute.
-# 3. Use super() so SavingsAccount reuses the initialization from Account.
-# 4. Create at least two objects and print their attributes.
-# 5. Write the "is-a" statement that explains why this inheritance relationship makes sense.
+# # Part C - Inheritance fundamentals
+# # 1. Create a base class Account with owner and balance.
+# # 2. Create SavingsAccount(Account) with an additional interest_rate attribute.
+# # 3. Use super() so SavingsAccount reuses the initialization from Account.
+# # 4. Create at least two objects and print their attributes.
+# # 5. Write the "is-a" statement that explains why this inheritance relationship makes sense.
 
 
-class Account:
-    def __init__(self, owner, balance=0.0):
-        self.owner = owner
-        self.balance = balance
+# class Account:
+#     def __init__(self, owner, balance=0.0):
+#         self.owner = owner
+#         self.balance = balance
 
 
-class SavingsAccount(Account):
-    def __init__(self, owner, balance=0.0, interest_rate=0.02):
-        super().__init__(owner, balance)
-        self.interest_rate = interest_rate
+# class SavingsAccount(Account):
+#     def __init__(self, owner, balance=0.0, interest_rate=0.02):
+#         super().__init__(owner, balance)
+#         self.interest_rate = interest_rate
 
 
-acc = Account("Anna", 1500)
-sav = SavingsAccount("Sven", 20000, 0.035)
+# acc = Account("Anna", 1500)
+# sav = SavingsAccount("Sven", 20000, 0.035)
 
-print(f"Account: {acc.owner}, balance {acc.balance}")
-print(
-    f"SavingsAccount: {sav.owner}, balance {sav.balance}, rate {sav.interest_rate:.1%}"
-)
+# print(f"Account: {acc.owner}, balance {acc.balance}")
+# print(
+#     f"SavingsAccount: {sav.owner}, balance {sav.balance}, rate {sav.interest_rate:.1%}"
+# )
 
 
-# Part D - Inherited and subclass-specific behaviour
-# 1. Create a base class Employee with name and a method get_information().
-# 2. Create Developer(Employee) and add a method that only Developer has.
-# 3. Create another Employee subclass of your choice and give it its own subclass-specific method.
-# 4. Demonstrate that both subclasses can use inherited behaviour from Employee.
-# 5. Demonstrate that an Employee object cannot automatically use a method that only exists in one of its
-# subclasses.
+# # Part D - Inherited and subclass-specific behaviour
+# # 1. Create a base class Employee with name and a method get_information().
+# # 2. Create Developer(Employee) and add a method that only Developer has.
+# # 3. Create another Employee subclass of your choice and give it its own subclass-specific method.
+# # 4. Demonstrate that both subclasses can use inherited behaviour from Employee.
+# # 5. Demonstrate that an Employee object cannot automatically use a method that only exists in one of its
+# # subclasses.
+
+
+# class Employee:
+#     def __init__(self, name):
+#         self.name = name
+
+#     def get_information(self):
+#         return f"Employee: {self.name}"
+
+
+# class Developer(Employee):
+#     def __init__(self, name, language):
+#         super().__init__(name)
+#         self.language = language
+
+#     def write_code(self):
+#         return f"{self.name} is writing {self.language} code."
+
+
+# class Manager(Employee):
+#     def __init__(self, name):
+#         super().__init__(name)
+#         self.team = []
+
+#     def add_team_member(self, employee):
+#         self.team.append(employee)
+#         return f"{employee.name} added to {self.name}'s team."
+
+
+# mgr = Manager("Göran")
+# emp = Employee("Anna")
+# dev = Developer("Sven", "Python")
+
+# print(mgr.get_information())
+# print(mgr.add_team_member(dev))
+# print(mgr.add_team_member(emp))
+# print([member.name for member in mgr.team])
+# print(dev.get_information())
+# try:
+#     print(emp.write_code)
+# except AttributeError as error:
+#     print(f"Error: {error}")
 
 # Part E - super() and shared initialization
 # 1. Create a base class Device with brand and year.
@@ -119,6 +155,16 @@ print(
 # 4. Create another Device subclass with its own additional attribute and use super() again.
 # 5. Demonstrate that both subclasses receive the shared initialization logic from Device without duplicating
 # it.
+
+
+class Device:
+    def __init__(self, brand, year):
+        self.brand = brand
+        self.year = year
+
+
+device = Device("Samsung", 2021)
+print(device.get_information())
 
 # Part F - Method overriding
 # 1. Create a base class Notification with a method send() that returns a general message.
