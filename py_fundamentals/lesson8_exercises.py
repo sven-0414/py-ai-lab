@@ -34,13 +34,45 @@
 #         self.members.append(member)
 
 
-# Part B - Dictionary or class?
-# 1. Represent a movie using a dictionary with title, director and rating.
-# 2. Represent the same information using a Movie class.
-# 3. Add a method to Movie that returns whether the movie is highly rated. Choose a sensible rating
-# threshold.
-# 4. In comments, briefly explain one situation where you would choose a dictionary and one where you
-# would choose a class.
+# # Part B - Dictionary or class?
+# # 1. Represent a movie using a dictionary with title, director and rating.
+# # 2. Represent the same information using a Movie class.
+# # 3. Add a method to Movie that returns whether the movie is highly rated. Choose a sensible rating
+# # threshold.
+# # 4. In comments, briefly explain one situation where you would choose a dictionary and one where you
+# # would choose a class.
+
+# movie_dict = {
+#     "title": "Inception",
+#     "director": "Christopher Nolan",
+#     "rating": 8.8,
+# }
+
+# movie_dict = {
+#     "title": "Inception",
+#     "director": "Christopher Nolan",
+#     "rating": 8.8,
+# }
+
+
+# class Movie:
+#     def __init__(self, title, director, rating):
+#         self.title = title
+#         self.director = director
+#         self.rating = rating
+
+#     def is_highly_rated(self):
+#         return self.rating >= 8.0
+
+
+# movie_obj = Movie("Inception", "Christopher Nolan", 8.8)
+
+# print(movie_dict["title"], movie_dict["rating"])
+# print(movie_obj.title, movie_obj.rating)
+# print(movie_obj.is_highly_rated())  # True
+
+# # Choose class: when the data has behavior or many objects of the same kind
+# # are needed, e.g. a movie catalog where every movie has the same fields and methods.
 
 # Part C - Inheritance fundamentals
 # 1. Create a base class Account with owner and balance.
@@ -48,6 +80,28 @@
 # 3. Use super() so SavingsAccount reuses the initialization from Account.
 # 4. Create at least two objects and print their attributes.
 # 5. Write the "is-a" statement that explains why this inheritance relationship makes sense.
+
+
+class Account:
+    def __init__(self, owner, balance=0.0):
+        self.owner = owner
+        self.balance = balance
+
+
+class SavingsAccount(Account):
+    def __init__(self, owner, balance=0.0, interest_rate=0.02):
+        super().__init__(owner, balance)
+        self.interest_rate = interest_rate
+
+
+acc = Account("Anna", 1500)
+sav = SavingsAccount("Sven", 20000, 0.035)
+
+print(f"Account: {acc.owner}, balance {acc.balance}")
+print(
+    f"SavingsAccount: {sav.owner}, balance {sav.balance}, rate {sav.interest_rate:.1%}"
+)
+
 
 # Part D - Inherited and subclass-specific behaviour
 # 1. Create a base class Employee with name and a method get_information().
