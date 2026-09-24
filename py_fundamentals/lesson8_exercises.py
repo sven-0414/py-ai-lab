@@ -158,13 +158,42 @@
 
 
 class Device:
-    def __init__(self, brand, year):
+    def __init__(self, brand, year, is_active=True):
         self.brand = brand
+        if year < 1950:
+            raise ValueError("Årtal måste vara större än 1950")
         self.year = year
+        self.is_active = is_active
 
 
-device = Device("Samsung", 2021)
-print(device.get_information())
+class Laptop(Device):
+    def __init__(self, brand, year, ram_gb, is_active=True):
+        super().__init__(brand, year, is_active)
+        self.ram_gb = ram_gb
+
+
+class Tablet(Device):
+    def __init__(self, brand, year, screen_size, is_active=True):
+        super().__init__(brand, year, is_active)
+        self.screen_size = screen_size
+
+
+laptop = Laptop("Lenovo", 2023, 16)
+tablet = Tablet("Apple", 2022, 11)
+
+print(laptop.brand, laptop.year, laptop.ram_gb, laptop.is_active)
+print(tablet.brand, tablet.year, tablet.screen_size, tablet.is_active)
+
+# Both trowing errors from baseclass
+try:
+    Laptop("Dell", 1800, 8)
+except ValueError as e:
+    print("Laptop:", e)
+
+try:
+    Tablet("Samsung", 1800, 10)
+except ValueError as e:
+    print("Tablet:", e)
 
 # Part F - Method overriding
 # 1. Create a base class Notification with a method send() that returns a general message.
@@ -172,6 +201,12 @@ print(device.get_information())
 # 3. Override send() in both subclasses so each returns a different message.
 # 4. Create one object from each class and call send() on all of them.
 # 5. Explain in a comment which method is used when send() is called on each object.
+
+
+class Notification:
+    def send(self):
+        return "Sending a general notification."
+
 
 # Part G - Override and still use the base method
 # 1. Create a base class Report with a method get_summary() that returns a general report summary.
