@@ -30,6 +30,7 @@ notifications = [EmailNotification(), SMSNotification(), PushNotification()]
 for notification in notifications:
     print(notification.send())
 
+# The loop does not relies on every object having a send() method, it does not need to know about the objcets.
 
 # Part B - Polymorphism with inheritance
 # 1. Create a base class Document with a title attribute and a method describe().
@@ -37,6 +38,35 @@ for notification in notifications:
 # 3. Override describe() in both subclasses so they return different descriptions.
 # 4. Create several PDFDocument and TextDocument objects and store them in one list.
 # 5. Loop through the list and print each document's title and the result of describe().
+
+
+class Document:
+    def __init__(self, title: str):
+        self.title = title
+
+    def describe(self) -> str:
+        return "A general document"
+
+
+class PDFDocument(Document):
+    def describe(self) -> str:
+        return "A PDF document with fixed layout"
+
+
+class TextDocument(Document):
+    def describe(self) -> str:
+        return "A plain text document"
+
+
+documents = [
+    PDFDocument("Annual report"),
+    TextDocument("Notes"),
+    PDFDocument("Invoice"),
+    TextDocument("README"),
+]
+
+for document in documents:
+    print(f"{document.title}: {document.describe()}")
 
 # Part C - Duck typing
 # 1. Create two unrelated classes, for example Printer and Screen. Do not use inheritance between them.
