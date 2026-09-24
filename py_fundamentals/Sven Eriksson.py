@@ -26,7 +26,7 @@ max_value = 0
 max_name = ""
 
 for product in products:
-    if product["price"] > max_value:
+    if product["price"] > max_value and product["stock"] > 0:
         max_value = product["price"]
         max_name = product["name"]
     if product["stock"] > 0:
@@ -132,15 +132,6 @@ print(calculate_order("Anna", *product_prices, **order_settings))
 # TASK 4
 # ==================================================
 
-players = [
-    {"name": "  anna", "score": 85, "active": True},
-    {"name": "DAVID ", "score": 72, "active": False},
-    {"name": " sara ", "score": 94, "active": True},
-    {"name": "LEO", "score": 67, "active": True},
-    {"name": " emma", "score": 88, "active": True},
-    {"name": "OSCAR ", "score": 76, "active": False},
-]
-
 # 1. Create a new list containing normalized player names.
 #    Remove unnecessary whitespace and use consistent capitalization.
 #    Use a list comprehension.
@@ -167,10 +158,28 @@ players = [
 
 
 # Write your solution below:
-new_list = [player["name"].strip().capitalize() for player in players]
 
-active_players = [
-    player["name"] for player in players if player["active"] and player["score"] > 80
+players = [
+    {"name": "  anna", "score": 85, "active": True},
+    {"name": "DAVID ", "score": 72, "active": False},
+    {"name": " sara ", "score": 94, "active": True},
+    {"name": "LEO", "score": 67, "active": True},
+    {"name": " emma", "score": 88, "active": True},
+    {"name": "OSCAR ", "score": 76, "active": False},
 ]
 
-# # I have not done the last lab yet and therefor can not to the lamba and zip tasks.
+normalized_names_list = [player["name"].strip().capitalize() for player in players]
+
+active_players = [
+    player["name"] for player in players if player["active"] and player["score"] >= 80
+]
+
+sorted_list = sorted(players, key=lambda p: p["score"], reverse=True)
+
+for index, player in enumerate(sorted_list, start=1):
+    print(f"{index}. {player['name'].strip().capitalize()} - {player['score']}")
+
+scores_list = [player["score"] for player in players]
+
+for name, score in zip(normalized_names_list, scores_list):
+    print(f"{name}, {score}")
