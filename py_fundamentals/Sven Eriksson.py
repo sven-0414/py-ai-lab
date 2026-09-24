@@ -35,7 +35,7 @@ for product in products:
 
 
 print(
-    f"Total value of products: {total_value}\nProduct with highest price: {max_name}.\n\n"
+    f"Total value of products: {total_value}\nProduct in stock with highest price: {max_name}.\n\n"
 )
 
 
