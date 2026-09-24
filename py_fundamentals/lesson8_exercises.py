@@ -1,151 +1,152 @@
-# # Part A - Mutable default arguments
-# # 1. Create a BadTeam class with name and a default parameter members=[]. Add an add_member()
-# # method.
-# # 2. Create two BadTeam objects without providing a members list. Add a member to only one team and
-# # print both lists. Explain in a comment what happened.
-# # 3. Create a corrected Team class using None as the default value and create a new list inside __init__.
-# # 4. Repeat the test with two Team objects and show that each object now has its own list.
+# Part A - Mutable default arguments
+# 1. Create a BadTeam class with name and a default parameter members=[]. Add an add_member()
+# method.
+# 2. Create two BadTeam objects without providing a members list. Add a member to only one team and
+# print both lists. Explain in a comment what happened.
+# 3. Create a corrected Team class using None as the default value and create a new list inside __init__.
+# 4. Repeat the test with two Team objects and show that each object now has its own list.
 
 
-# class BadTeam:
-#     def __init__(self, name, members=[]):
-#         self.name = name
-#         self.members = members
+class BadTeam:
+    def __init__(self, name, members=[]):
+        self.name = name
+        self.members = members
 
-#     def add_member(self, name):
-#         self.members.append(name)
-
-
-# team_bad = BadTeam("Bad Developing")
-# team_evil = BadTeam("Evil Developing")
-
-# team_bad.add_member("Ada Lovelace")
-
-# print(team_bad.members)
-# print(team_evil.members)  # Both instances refer to the same list object
-
-# # Correct version
-# class Team:
-#     def __init__(self, name, members=None):
-#         self.name = name
-#         self.members = members if members is not None else []
-
-#     def add_member(self, member):
-#         self.members.append(member)
+    def add_member(self, name):
+        self.members.append(name)
 
 
-# # Part B - Dictionary or class?
-# # 1. Represent a movie using a dictionary with title, director and rating.
-# # 2. Represent the same information using a Movie class.
-# # 3. Add a method to Movie that returns whether the movie is highly rated. Choose a sensible rating
-# # threshold.
-# # 4. In comments, briefly explain one situation where you would choose a dictionary and one where you
-# # would choose a class.
+team_bad = BadTeam("Bad Developing")
+team_evil = BadTeam("Evil Developing")
 
-# movie_dict = {
-#     "title": "Inception",
-#     "director": "Christopher Nolan",
-#     "rating": 8.8,
-# }
+team_bad.add_member("Ada Lovelace")
+
+print(team_bad.members)
+print(team_evil.members)  # Both instances refer to the same list object
 
 
-# class Movie:
-#     def __init__(self, title, director, rating):
-#         self.title = title
-#         self.director = director
-#         self.rating = rating
+# Correct version
+class Team:
+    def __init__(self, name, members=None):
+        self.name = name
+        self.members = members if members is not None else []
 
-#     def is_highly_rated(self):
-#         return self.rating >= 8.0
-
-
-# movie_obj = Movie("Inception", "Christopher Nolan", 8.8)
-
-# print(movie_dict["title"], movie_dict["rating"])
-# print(movie_obj.title, movie_obj.rating)
-# print(movie_obj.is_highly_rated())  # True
-
-# # Choose class: when the data has behavior or many objects of the same kind
-# # are needed, e.g. a movie catalog where every movie has the same fields and methods.
-
-# # Part C - Inheritance fundamentals
-# # 1. Create a base class Account with owner and balance.
-# # 2. Create SavingsAccount(Account) with an additional interest_rate attribute.
-# # 3. Use super() so SavingsAccount reuses the initialization from Account.
-# # 4. Create at least two objects and print their attributes.
-# # 5. Write the "is-a" statement that explains why this inheritance relationship makes sense.
+    def add_member(self, member):
+        self.members.append(member)
 
 
-# class Account:
-#     def __init__(self, owner, balance=0.0):
-#         self.owner = owner
-#         self.balance = balance
+# Part B - Dictionary or class?
+# 1. Represent a movie using a dictionary with title, director and rating.
+# 2. Represent the same information using a Movie class.
+# 3. Add a method to Movie that returns whether the movie is highly rated. Choose a sensible rating
+# threshold.
+# 4. In comments, briefly explain one situation where you would choose a dictionary and one where you
+# would choose a class.
+
+movie_dict = {
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "rating": 8.8,
+}
 
 
-# class SavingsAccount(Account):
-#     def __init__(self, owner, balance=0.0, interest_rate=0.02):
-#         super().__init__(owner, balance)
-#         self.interest_rate = interest_rate
+class Movie:
+    def __init__(self, title, director, rating):
+        self.title = title
+        self.director = director
+        self.rating = rating
+
+    def is_highly_rated(self):
+        return self.rating >= 8.0
 
 
-# acc = Account("Anna", 1500)
-# sav = SavingsAccount("Sven", 20000, 0.035)
+movie_obj = Movie("Inception", "Christopher Nolan", 8.8)
 
-# print(f"Account: {acc.owner}, balance {acc.balance}")
-# print(
-#     f"SavingsAccount: {sav.owner}, balance {sav.balance}, rate {sav.interest_rate:.1%}"
-# )
+print(movie_dict["title"], movie_dict["rating"])
+print(movie_obj.title, movie_obj.rating)
+print(movie_obj.is_highly_rated())  # True
 
+# Choose class: when the data has behavior or many objects of the same kind
+# are needed, e.g. a movie catalog where every movie has the same fields and methods.
 
-# # Part D - Inherited and subclass-specific behaviour
-# # 1. Create a base class Employee with name and a method get_information().
-# # 2. Create Developer(Employee) and add a method that only Developer has.
-# # 3. Create another Employee subclass of your choice and give it its own subclass-specific method.
-# # 4. Demonstrate that both subclasses can use inherited behaviour from Employee.
-# # 5. Demonstrate that an Employee object cannot automatically use a method that only exists in one of its
-# # subclasses.
-
-
-# class Employee:
-#     def __init__(self, name):
-#         self.name = name
-
-#     def get_information(self):
-#         return f"Employee: {self.name}"
+# Part C - Inheritance fundamentals
+# 1. Create a base class Account with owner and balance.
+# 2. Create SavingsAccount(Account) with an additional interest_rate attribute.
+# 3. Use super() so SavingsAccount reuses the initialization from Account.
+# 4. Create at least two objects and print their attributes.
+# 5. Write the "is-a" statement that explains why this inheritance relationship makes sense.
 
 
-# class Developer(Employee):
-#     def __init__(self, name, language):
-#         super().__init__(name)
-#         self.language = language
-
-#     def write_code(self):
-#         return f"{self.name} is writing {self.language} code."
+class Account:
+    def __init__(self, owner, balance=0.0):
+        self.owner = owner
+        self.balance = balance
 
 
-# class Manager(Employee):
-#     def __init__(self, name):
-#         super().__init__(name)
-#         self.team = []
-
-#     def add_team_member(self, employee):
-#         self.team.append(employee)
-#         return f"{employee.name} added to {self.name}'s team."
+class SavingsAccount(Account):
+    def __init__(self, owner, balance=0.0, interest_rate=0.02):
+        super().__init__(owner, balance)
+        self.interest_rate = interest_rate
 
 
-# mgr = Manager("Göran")
-# emp = Employee("Anna")
-# dev = Developer("Sven", "Python")
+acc = Account("Anna", 1500)
+sav = SavingsAccount("Sven", 20000, 0.035)
 
-# print(mgr.get_information())
-# print(mgr.add_team_member(dev))
-# print(mgr.add_team_member(emp))
-# print([member.name for member in mgr.team])
-# print(dev.get_information())
-# try:
-#     print(emp.write_code)
-# except AttributeError as error:
-#     print(f"Error: {error}")
+print(f"Account: {acc.owner}, balance {acc.balance}")
+print(
+    f"SavingsAccount: {sav.owner}, balance {sav.balance}, rate {sav.interest_rate:.1%}"
+)
+
+
+# Part D - Inherited and subclass-specific behaviour
+# 1. Create a base class Employee with name and a method get_information().
+# 2. Create Developer(Employee) and add a method that only Developer has.
+# 3. Create another Employee subclass of your choice and give it its own subclass-specific method.
+# 4. Demonstrate that both subclasses can use inherited behaviour from Employee.
+# 5. Demonstrate that an Employee object cannot automatically use a method that only exists in one of its
+# subclasses.
+
+
+class Employee:
+    def __init__(self, name):
+        self.name = name
+
+    def get_information(self):
+        return f"Employee: {self.name}"
+
+
+class Developer(Employee):
+    def __init__(self, name, language):
+        super().__init__(name)
+        self.language = language
+
+    def write_code(self):
+        return f"{self.name} is writing {self.language} code."
+
+
+class Manager(Employee):
+    def __init__(self, name):
+        super().__init__(name)
+        self.team = []
+
+    def add_team_member(self, employee):
+        self.team.append(employee)
+        return f"{employee.name} added to {self.name}'s team."
+
+
+mgr = Manager("Göran")
+emp = Employee("Anna")
+dev = Developer("Sven", "Python")
+
+print(mgr.get_information())
+print(mgr.add_team_member(dev))
+print(mgr.add_team_member(emp))
+print([member.name for member in mgr.team])
+print(dev.get_information())
+try:
+    print(emp.write_code)
+except AttributeError as error:
+    print(f"Error: {error}")
 
 # Part E - super() and shared initialization
 # 1. Create a base class Device with brand and year.
@@ -204,9 +205,31 @@ except ValueError as e:
 
 
 class Notification:
-    def send(self):
-        return "Sending a general notification."
+    def send(self) -> str:
+        return "Notification!"
 
+
+class EmailNotification(Notification):
+    def send(self) -> str:
+        return "Email notification!"
+
+
+class SMSNotification(Notification):
+    def send(self) -> str:
+        return "SMS notification!"
+
+
+notification = Notification()
+email = EmailNotification()
+sms = SMSNotification()
+
+print(notification.send())
+print(email.send())
+print(sms.send())
+
+print(EmailNotification.__mro__)  # prints the objct hierarchy
+
+# Python first looks for the method in the object's own class, then in the parent class and
 
 # Part G - Override and still use the base method
 # 1. Create a base class Report with a method get_summary() that returns a general report summary.
