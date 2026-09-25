@@ -2,85 +2,128 @@
 # Sven Eriksson
 # Lab 9
 
-# Part A - Polymorphism
-# 1. Create three classes: EmailNotification, SMSNotification and PushNotification.
-# 2. Give all three classes a method called send(), but make each method return a different message.
-# 3. Create one object from each class and store them in the same list.
-# 4. Loop through the list and call send() on every object.
-# 5. In a comment, explain why the loop does not need to know the exact class of each object.
+# # Part A - Polymorphism
+# # 1. Create three classes: EmailNotification, SMSNotification and PushNotification.
+# # 2. Give all three classes a method called send(), but make each method return a different message.
+# # 3. Create one object from each class and store them in the same list.
+# # 4. Loop through the list and call send() on every object.
+# # 5. In a comment, explain why the loop does not need to know the exact class of each object.
 
 
-class EmailNotification:
-    def send(self) -> str:
-        return "Email notification!"
+# class EmailNotification:
+#     def send(self) -> str:
+#         return "Email notification!"
 
 
-class SMSNotification:
-    def send(self) -> str:
-        return "SMS notification!"
+# class SMSNotification:
+#     def send(self) -> str:
+#         return "SMS notification!"
 
 
-class PushNotification:
-    def send(self) -> str:
-        return "Push notification!"
+# class PushNotification:
+#     def send(self) -> str:
+#         return "Push notification!"
 
 
-notifications = [EmailNotification(), SMSNotification(), PushNotification()]
+# notifications = [EmailNotification(), SMSNotification(), PushNotification()]
 
-for notification in notifications:
-    print(notification.send())
+# for notification in notifications:
+#     print(notification.send())
 
-# The loop does not relies on every object having a send() method, it does not need to know about the objcets.
+# # The loop relies on every object having a send() method, it does not need to know about the objcets.
 
-# Part B - Polymorphism with inheritance
-# 1. Create a base class Document with a title attribute and a method describe().
-# 2. Create PDFDocument(Document) and TextDocument(Document).
-# 3. Override describe() in both subclasses so they return different descriptions.
-# 4. Create several PDFDocument and TextDocument objects and store them in one list.
-# 5. Loop through the list and print each document's title and the result of describe().
-
-
-class Document:
-    def __init__(self, title: str):
-        self.title = title
-
-    def describe(self) -> str:
-        return "A general document"
+# # Part B - Polymorphism with inheritance
+# # 1. Create a base class Document with a title attribute and a method describe().
+# # 2. Create PDFDocument(Document) and TextDocument(Document).
+# # 3. Override describe() in both subclasses so they return different descriptions.
+# # 4. Create several PDFDocument and TextDocument objects and store them in one list.
+# # 5. Loop through the list and print each document's title and the result of describe().
 
 
-class PDFDocument(Document):
-    def describe(self) -> str:
-        return "A PDF document with fixed layout"
+# class Document:
+#     def __init__(self, title: str):
+#         self.title = title
+
+#     def describe(self) -> str:
+#         return "A general document"
 
 
-class TextDocument(Document):
-    def describe(self) -> str:
-        return "A plain text document"
+# class PDFDocument(Document):
+#     def describe(self) -> str:
+#         return "A PDF document with fixed layout"
 
 
-documents = [
-    PDFDocument("Annual report"),
-    TextDocument("Notes"),
-    PDFDocument("Invoice"),
-    TextDocument("README"),
-]
+# class TextDocument(Document):
+#     def describe(self) -> str:
+#         return "A plain text document"
 
-for document in documents:
-    print(f"{document.title}: {document.describe()}")
 
-# Part C - Duck typing
-# 1. Create two unrelated classes, for example Printer and Screen. Do not use inheritance between them.
-# 2. Give both classes a method called display_status().
-# 3. Create objects from both classes and store them in the same list.
-# 4. Loop through the list and call display_status() on each object.
-# 5. In a comment, explain why this works even though the classes do not share a base class.
+# documents = [
+#     PDFDocument("Annual report"),
+#     TextDocument("Notes"),
+#     PDFDocument("Invoice"),
+#     TextDocument("README"),
+# ]
 
-# Part D - isinstance()
-# 1. Create a base class User and a subclass AdminUser(User).
-# 2. Create an AdminUser object.
-# 3. Use isinstance() to check whether the object is an AdminUser, a User and a string.
-# 4. Print all three results.
-# 5. In a comment, explain why the AdminUser object is also considered an instance of User.
+# for document in documents:
+#     print(f"{document.title}: {document.describe()}")
+
+# # Part C - Duck typing
+# # 1. Create two unrelated classes, for example Printer and Screen. Do not use inheritance between them.
+# # 2. Give both classes a method called display_status().
+# # 3. Create objects from both classes and store them in the same list.
+# # 4. Loop through the list and call display_status() on each object.
+# # 5. In a comment, explain why this works even though the classes do not share a base class.
+
+
+# class Printer:
+#     def __init__(self, paper_left: int):
+#         self.paper_left = paper_left
+
+#     def display_status(self) -> str:
+#         return f"Printer: {self.paper_left} sheets of paper left"
+
+
+# class Screen:
+#     def __init__(self, brightness: int):
+#         self.brightness = brightness
+
+#     def display_status(self) -> str:
+#         return f"Screen: brightness at {self.brightness}%"
+
+
+# devices = [Printer(120), Screen(75), Printer(5)]
+
+# for device in devices:
+#     print(device.display_status())
+
+# # Python does not check the class of an object before calling a method. It only looks up display_status on every object.
+
+# # Part D - isinstance()
+# # 1. Create a base class User and a subclass AdminUser(User).
+# # 2. Create an AdminUser object.
+# # 3. Use isinstance() to check whether the object is an AdminUser, a User and a string.
+# # 4. Print all three results.
+# # 5. In a comment, explain why the AdminUser object is also considered an instance of User.
+
+
+# class User:
+#     def __init__(self, username: str):
+#         self.username = username
+
+
+# class AdminUser(User):
+#     pass
+
+
+# admin = AdminUser("sven")
+
+# print(isinstance(admin, AdminUser))
+# print(isinstance(admin, User))
+# print(isinstance(admin, str))
+
+# # Adminuser is also an instance of User because AdminUser inherits from User.
+
 
 # Part E - __str__
 # 1. Create a Product class with name and price.
@@ -88,6 +131,30 @@ for document in documents:
 # 3. Add __str__ so printing the Product gives a useful human-readable description.
 # 4. Create at least three Product objects and print them.
 # 5. Use str() on one Product object, store the result in a variable and print its type.
+
+
+class Product:
+    def __init__(self, name: str, price: float):
+        self.name = name
+        self.price = price
+
+
+   def __str__(self) -> str:
+       return f"{self.name} - {self.price} kr"
+
+
+laptop = Product("Laptop", 12000) # Without __str__ "<__main__.Product object at 0x104ab5fd0>"
+phone = Product("Phone", 8499.50)
+headphones = Product("Headphones", 1299)
+
+print(laptop)
+print(phone)
+print(headphones)
+
+description = str(laptop)
+print(description)
+print(type(description))
+
 
 # Part F - __str__ with inheritance
 # 1. Create a base class Account with owner and balance.
