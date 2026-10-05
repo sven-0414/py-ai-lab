@@ -51,5 +51,7 @@ SELECT name FROM products ORDER BY length(name) DESC LIMIT 1;
 -- Extra challenges 10
 SELECT substr(email, 1, instr(email, '@') - 1) AS username FROM customers;
 -- Extra challenges 11
+SELECT * FROM products WHERE price > (SELECT avg(price) FROM products);
 -- Extra challenges 12
+SELECT name || ' costs ' || cast(price AS INTEGER) || ' kr' FROM products WHERE stock > 0 ORDER BY price;
 -- Extra challenges 13
