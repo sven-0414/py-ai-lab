@@ -37,8 +37,11 @@ SELECT * FROM customers WHERE (city LIKE 'S%' OR city LIKE 'M%') OR city IS NULL
 -- Extra challenges 3
 SELECT * FROM products ORDER BY price DESC LIMIT 1 OFFSET 1;
 -- Extra challenges 4
+SELECT* FROM customers WHERE  joined_date > '2023-12-31' AND joined_date < '2026-01-01-' ORDER BY joined_date DESC LIMIT 3;
 -- Extra challenges 5
+SELECT first_name || ' ' || last_name AS full_name FROM customers ORDER BY last_name;
 -- Extra challenges 6
+SELECT * CASE WHEN price < 200 THEN 'budget' when price < 800 THEN 'mid' ELSE 'premium' END AS price_level FROM products;
 -- Extra challenges 7
 -- Extra challenges 8
 -- Extra challenges 9
