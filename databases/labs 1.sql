@@ -41,11 +41,15 @@ SELECT* FROM customers WHERE  joined_date > '2023-12-31' AND joined_date < '2026
 -- Extra challenges 5
 SELECT first_name || ' ' || last_name AS full_name FROM customers ORDER BY last_name;
 -- Extra challenges 6
-SELECT * CASE WHEN price < 200 THEN 'budget' when price < 800 THEN 'mid' ELSE 'premium' END AS price_level FROM products;
+SELECT *, CASE WHEN price < 200 THEN 'budget' when price < 800 THEN 'mid' ELSE 'premium' END AS price_level FROM products;
 -- Extra challenges 7
+SELECT first_name, COALESCE(city, 'Unkonwn') AS city FROM customers;
 -- Extra challenges 8
+SELECT * FROM customers WHERE strftime('%m', joined_date) <= '06';
 -- Extra challenges 9
+SELECT name FROM products ORDER BY length(name) DESC LIMIT 1;
 -- Extra challenges 10
+SELECT substr(email, 1, instr(email, '@') - 1) AS username FROM customers;
 -- Extra challenges 11
 -- Extra challenges 12
 -- Extra challenges 13
