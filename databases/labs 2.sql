@@ -17,8 +17,30 @@ CREATE TABLE books (
 );
  
  -- Excersise 3
+ ALTER TABLE books ADD COLUMN isbn TEXT;
+ 
  -- Excersise 4
+ DROP TABLE books;
+
  -- Excersise 5
+ 
+ CREATE TABLE reviews (
+	review_id  INTEGER PRIMARY KEY,
+	product_id INTEGER,
+	comment TEXT,
+	rating INTEGER CHECK (rating > 0 AND rating <= 5),
+FOREIGN KEY (product_id) REFERENCES products(product_id)
+ );
+
+  -- Excersise 5
+ CREATE TABLE reviews (
+	review_id  INTEGER PRIMARY KEY,
+	product_id INTEGER,
+	comment TEXT,
+	rating INTEGER CHECK (rating > 0 AND rating <= 5) 
+FOREIGN KEY (product_id) REFERENCES products(product_id)
+ )
+
  -- Excersise 6
  -- Excersise 7
  -- Excersise 8
