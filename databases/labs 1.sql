@@ -55,3 +55,4 @@ SELECT * FROM products WHERE price > (SELECT avg(price) FROM products);
 -- Extra challenges 12
 SELECT name || ' costs ' || cast(price AS INTEGER) || ' kr' FROM products WHERE stock > 0 ORDER BY price;
 -- Extra challenges 13
+SELECT city, count(*) AS counter FROM customers GROUP BY city ORDER BY counter DESC;
