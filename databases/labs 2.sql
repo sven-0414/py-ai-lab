@@ -1,3 +1,4 @@
+
 --  Excersise 1
 CREATE TABLE books (
 	book_id INTEGER PRIMARY KEY,
@@ -50,7 +51,7 @@ CREATE TABLE suppliers (
 	email TEXT
 );
 
- -- Extra challenges Exercise 2
+-- Extra challenges Exercise 2
 INSERT INTO suppliers (name, email)
 	VALUES ('Kalle', 'kalle@mail.se')
 
@@ -58,9 +59,32 @@ INSERT INTO suppliers (name, email)
 INSERT INTO suppliers (name, email)
 	VALUES ('Nordic Textiles', 'kalle@mail.se')
 
+	--Result: UNIQUE constraint failed: suppliers.name
+
 -- Extra challenges Exercise 4
+CREATE TABLE coupons (
+	code TEXT PRIMARY KEY,
+	discount_percent INTEGER CHECK (discount_percent BETWEEN 1 AND 90),
+	valid_until TEXT NOT NULL
+);
+
 -- Extra challenges Exercise 5
+INSERT INTO suppliers (name, email)
+	VALUES ('Kalle', 'kalle@mail.se');
+-- Result: CHECK constraint failed: discount_percent BETWEEN 1 AND 90
+
 -- Extra challenges Exercise 6
+ALTER TABLE suppliers RENAME COLUMN email TO contact_email;
+
 -- Extra challenges Exercise 7
+PRAGMA table_info(products);
+
+-- 0	product_id	INTEGER	0		1
+-- 1	name	TEXT	1		0
+-- 2	category	TEXT	0		0
+-- 3	price	REAL	0		0
+-- 4	stock	INTEGER	0		0
+
+
 -- Extra challenges Exercise 8
 -- Extra challenges Exercise 9
