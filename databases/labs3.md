@@ -13,7 +13,7 @@
 
 `products` breaks 1NF: it holds several products in one field. Fix it with a junction table `order_items` that links to `products`.
 
-![ER-diagram övning 11](ex11.png)
+![ER-diagram övning 11](EX11.png)
 
 ## 12.
 
