@@ -13,14 +13,23 @@
 
 `products` breaks 1NF: it holds several products in one field. Fix it with a junction table `order_items` that links to `products`.
 
-![ER-diagram övning 11](EX11.png)
+![Exersice 11](EX11.png)
 
 ## 12.
 
 `customer_email` is in the wrong place: it describes the customer, not the order, so it depends on `customer_id` rather than the order key (a 3NF violation) – move it to the `customers` table and keep only `customer_id` here.
 
 ## 13.
-'<u>Students</u> take lessons from teachers. A <u>lesson</u> has a <u>date</u>, <u>time</u>, <u>room</u> and
-<u>instrument</u>. One <u>teacher</u> can teach many instruments.' 
+**Students** take lessons from teachers. A **lesson** has a **date**, **time**, **room** and
+**instrument**. One **teacher** can teach many instruments.
 
 ## 14.
+| Relation             | Type                               |
+|----------------------|------------------------------------|
+| Teacher – Lesson     | 1:N                                |
+| Student – Lesson     | 1:N or N:M (if lesson is for a group) |
+| Teacher – Instrument | N:M                                |
+| Lesson – Instrument  | 1:N                                |
+
+15. 
+![Exersice 15](EX15.png)
