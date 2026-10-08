@@ -25,3 +25,7 @@ SELECT products.name, order_items.quantity, order_items.unit_price, order_items.
 	JOIN products ON products.product_id = order_items.product_id
 	WHERE order_items.order_id = 10;
 	
+SELECT customers.first_name, orders.order_date
+	FROM customers
+	JOIN orders ON customers.customer_id = orders.customer_id
+	
