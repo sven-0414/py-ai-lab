@@ -28,4 +28,13 @@ SELECT products.name, order_items.quantity, order_items.unit_price, order_items.
 SELECT customers.first_name, orders.order_date
 	FROM customers
 	JOIN orders ON customers.customer_id = orders.customer_id
+	JOIN order_items ON orders.order_id = order_items.order_id
+	JOIN products ON order_items.product_id = products.product_id
+	WHERE products.name = 'Hoodie Black';
+
+SELECT customers.first_name, customers.last_name, orders.order_id
+	FROM customers
+	LEFT JOIN orders ON customers.customer_id = orders.customer_id
+	GROUP BY customers.customer_id;
+
 	
