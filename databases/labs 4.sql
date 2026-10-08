@@ -37,4 +37,13 @@ SELECT customers.first_name, customers.last_name, orders.order_id
 	LEFT JOIN orders ON customers.customer_id = orders.customer_id
 	GROUP BY customers.customer_id;
 
-	
+SELECT * FROM products
+	LEFT JOIN order_items ON products.product_id = order_items.product_id
+	WHERE order_items.product_id IS NULL;
+
+SELECT customers.first_name, products.name, order_items.quantity
+	FROM customers
+	JOIN orders ON customers.customer_id = orders.customer_id
+	JOIN order_items ON orders.order_id = order_items.order_id
+	JOIN products ON order_items.product_id = products.product_id
+	WHERE customers.city = 'Uppsala';
