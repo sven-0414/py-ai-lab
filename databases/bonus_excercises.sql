@@ -37,7 +37,14 @@ UPDATE products SET stock = stock + 1 WHERE name = 'Socks 3-pack';
 
 -- Excersice 7
 DELETE FROM products WHERE product_id = 1;
--- "Result: FOREIGN KEY constraint failed"
+-- Result: FOREIGN KEY constraint failed
 -- Order_intems point to this product with FOREIGN KEY:s
 -- The shop needs to inactivate the product without deleting it. For exampe set stock to 0 och change category to 'Inactive'
 
+-- Excercise 8
+ALTER TABLE products ADD COLUMN discount_percent INTEGER DEFAULT 0 CHECK (discount_percent BETWEEN 0 AND 90);
+
+UPDATE products SET discount_percent = 20 WHERE category = 'Shoes';
+
+SELECT name, price, price * (1 - discount_percent / 100.0) AS price_after_discount
+FROM products;
