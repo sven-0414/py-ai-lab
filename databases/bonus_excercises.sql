@@ -18,6 +18,7 @@ FROM customers
 JOIN orders ON customers.customer_id = orders.customer_id
 WHERE customers.city IN ('Uppsala', 'Stockholm');
 
+-- Excercise 5
 INSERT INTO customers (customer_id, first_name, last_name, city)
 	VALUES (11, 'Leo', 'Falk', 'Uppsala');
 
@@ -26,5 +27,17 @@ INSERT INTO orders (order_id, customer_id, order_date)
 
 INSERT INTO order_items (order_id, product_id, quantity, unit_price)
 	VALUES
-		(16, 1, 1, 599),   -- 1 Hoodie Black
-		(16, 9, 2, 129);   -- 2 Socks 3-pack
+		(16, 1, 1, 599),   
+		(16, 9, 2, 129);   
+	
+-- Exercise 6
+UPDATE orders SET status = 'cancelled' WHERE order_id = 12;
+UPDATE products SET stock = stock + 1 WHERE name = 'Sneakers Classic';
+UPDATE products SET stock = stock + 1 WHERE name = 'Socks 3-pack';
+
+-- Excersice 7
+DELETE FROM products WHERE product_id = 1;
+-- "Result: FOREIGN KEY constraint failed"
+-- Order_intems point to this product with FOREIGN KEY:s
+-- The shop needs to inactivate the product without deleting it. For exampe set stock to 0 och change category to 'Inactive'
+
