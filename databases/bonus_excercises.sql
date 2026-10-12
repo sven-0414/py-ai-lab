@@ -48,3 +48,5 @@ UPDATE products SET discount_percent = 20 WHERE category = 'Shoes';
 
 SELECT name, price, price * (1 - discount_percent / 100.0) AS price_after_discount
 FROM products;
+
+-- Excercise 9

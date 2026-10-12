@@ -24,3 +24,6 @@ env/
 # Environment / secrets
 .env
 *.log
+
+# database
+webshop.db
