@@ -50,4 +50,14 @@ from pathlib import Path
 # User input could contain SQL code. With a placeholder the database engine
 # treats it strictly as a value, so the code is never parsed or executed.
 
-# Excersise 5
+# Excersise 7
+# float("abc") will throw an error.
+
+
+# Excersise 9
+
+# SELECT DISTINCT products.name
+# FROM orders
+# JOIN order_items ON order_items.order_id = orders.id
+# JOIN products ON products.id = order_items.product_id
+# WHERE orders.customer_id = 1
