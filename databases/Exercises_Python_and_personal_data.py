@@ -61,3 +61,30 @@ from pathlib import Path
 # JOIN order_items ON order_items.order_id = orders.id
 # JOIN products ON products.id = order_items.product_id
 # WHERE orders.customer_id = 1
+
+# Excersise 10
+# UPDATE customers
+# 	SET email = "erik.johansson@example.com"
+# 	WHERE first_name = "Erik"
+
+# Excersise 11
+# DROP VIEW IF EXISTS customer_overview;
+# CREATE VIEW customer_overview AS
+# SELECT c.customer_id,
+#        c.first_name,
+#        c.city,
+#        COUNT(o.order_id) AS order_count
+# FROM customers c
+# LEFT JOIN orders o ON o.customer_id = c.customer_id
+# GROUP BY c.customer_id, c.first_name, c.city;
+
+# SELECT * FROM customer_overview;
+
+# Excersise 12
+# Discuss in pairs: the webshop wants to add a birth_date column 'just in case'. What would you
+# say? Write two sentences.
+
+# I would say we should not collect personal data “just in case” — only when
+# we know we actually need it. Under the GDPR principle of data minimization,
+#  you may only collect personal data for a specific purpose, and every extra
+# column of sensitive data is an unnecessary risk if the database ever leaks.
