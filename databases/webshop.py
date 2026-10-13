@@ -67,3 +67,14 @@ db = client["webshop"]
 # )
 
 # print(db.products.count_documents({}))
+
+
+# for c in db.customers.find():
+#     print(f"{c['first_name']} {c['last_name']} ({c.get('city', 'unknown')})")
+
+
+orders = list(db.orders.find())
+
+for i, order in enumerate(orders, start=1):
+    antal = len(order["items"])
+    print(f"Order {i}: {antal} items")
