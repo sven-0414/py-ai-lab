@@ -41,3 +41,29 @@ db = client["webshop"]
 #     }
 # )
 # print(result.inserted_id)
+
+
+# result = db.products.insert_many(
+#     [
+#         {
+#             "_id": "13",
+#             "name": "Long Johns",
+#             "category": "Underwear",
+#             "stock": 125,
+#             "price": 199,
+#             "tags": ["winter"],
+#             "details": {"material": "wool"},
+#         },
+#         {
+#             "_id": "14",
+#             "name": "Fleece Jacket",
+#             "category": "Clothing",
+#             "stock": 40,
+#             "price": 699,
+#             "tags": ["winter", "fleece"],
+#             "details": {"color": "navy", "material": "polyester"},
+#         },
+#     ]
+# )
+
+# print(db.products.count_documents({}))
