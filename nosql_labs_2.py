@@ -24,8 +24,20 @@ db = client["webshop"]
 # for w in white_products:
 #     print(f"{w['name']} {w['details']['color']}")
 
-products = db.products.find({"tags": "sport"}, {"name": 1, "tags": 1, "_id": 0})
+# products = db.products.find({"tags": "sport"}, {"name": 1, "tags": 1, "_id": 0})
 
 
-for p in products:
-    print(f"{p['name']}")
+# for p in products:
+#     print(f"{p['name']}")
+
+
+# cheapest = (
+#     db.products.find({}, {"name": 1, "price": 1, "_id": 0}).sort("price", 1).limit(5)
+# )
+
+# for p in cheapest:
+#     print(f"{p['name']} {p['price']}")
+
+
+for o in db.orders.find({"items.product_id": 2}):
+    print(o)
