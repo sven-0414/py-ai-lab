@@ -73,8 +73,14 @@ db = client["webshop"]
 #     print(f"{c['first_name']} {c['last_name']} ({c.get('city', 'unknown')})")
 
 
-orders = list(db.orders.find())
+# orders = list(db.orders.find())
 
-for i, order in enumerate(orders, start=1):
-    antal = len(order["items"])
-    print(f"Order {i}: {antal} items")
+# for i, order in enumerate(orders, start=1):
+#     antal = len(order["items"])
+#     print(f"Order {i}: {antal} items")
+
+
+# not_delivered = db.orders.find({"status": {"$ne": "delivered"}}, {"status": 1})
+
+# for o in not_delivered:
+#     print(f"{o['_id']} {o['status']}")
