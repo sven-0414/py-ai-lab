@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+from datetime import datetime
 
 client = MongoClient("mongodb://localhost:27017/")
 db = client["webshop"]
@@ -39,5 +40,55 @@ db = client["webshop"]
 #     print(f"{p['name']} {p['price']}")
 
 
-for o in db.orders.find({"items.product_id": 2}):
-    print(o)
+# for o in db.orders.find({"items.product_id": 2}):
+#     print(o)
+
+
+# db.products.update_many({"category": "Accessories"}, {"$inc": {"price": 20}})
+
+# for p in db.products.find(
+#     {"category": "Accessories"}, {"name": 1, "price": 1, "_id": 0}
+# ):
+#     print(f"{p['name']} {p['price']}")
+
+
+# filter = {"category": "Accessories"}
+
+# print("Innan:")
+# for p in db.products.find(filter, {"name": 1, "price": 1, "_id": 0}):
+#     print(f"  {p['name']} {p['price']}")
+
+# if input("Höj dessa med 20 kr? (j/n): ") == "j":
+#     result = db.products.update_many(filter, {"$inc": {"price": 20}})
+#     print(f"{result.modified_count} produkter uppdaterade.")
+
+#     print("Efter:")
+#     for p in db.products.find(filter, {"name": 1, "price": 1, "_id": 0}):
+#         print(f"  {p['name']} {p['price']}")
+# else:
+#     print("Avbröt, inget ändrat.")
+
+
+# db.products.update_one(
+#     {"name": "Rain Jacket"},
+#     {"$addToSet": {"tags": "new"}, "$set": {"restock_date": datetime.now()}},
+# )
+
+# for p in db.products.find(
+#     {"name": "Rain Jacket"}, {"name": 1, "tags": 1, "restock_date": 1, "_id": 0}
+# ):
+#     print(p)
+
+
+query = {"status": "new", "order_date": {"$lt": datetime(2026, 3, 20)}}
+
+# 1. Räkna först
+antal = db.orders.count_documents(query)
+print(f"Matchar: {antal} ordrar")
+
+# 2. Fråga innan radering
+if input(f"Radera dessa {antal} ordrar? (j/n): ") == "j":
+    result = db.orders.delete_many(query)
+    print(f"{result.deleted_count} ordrar raderade.")
+else:
+    print("Avbröt, inget raderat.")
