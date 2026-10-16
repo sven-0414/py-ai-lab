@@ -35,16 +35,59 @@ db = client["webshop"]
 #     print(f"{rad['_id']}: {rad['count']}")
 
 
+# pipeline = [
+#     {
+#         "$group": {
+#             "_id": "$category",
+#             "cheapest": {"$min": "$price"},
+#             "most_expensive": {"$max": "$price"},
+#         }
+#     },
+#     {"$sort": {"_id": 1}},
+# ]
+
+# for rad in db.products.aggregate(pipeline):
+#     print(f"{rad['_id']}: {rad['cheapest']} – {rad['most_expensive']}")
+
+
+# pipeline = [
+#     {
+#         "$group": {
+#             "_id": "$category",
+#             "cheapest": {"$min": "$price"},
+#             "most_expensive": {"$max": "$price"},
+#         }
+#     },
+#     {"$sort": {"_id": 1}},
+# ]
+
+# for rad in db.products.aggregate(pipeline):
+#     print(f"{rad['_id']}: {rad['cheapest']} – {rad['most_expensive']}")
+
+# pipeline = [
+#     {"$group": {"_id": "$customer_id", "order_count": {"$sum": 1}}},
+#     {"$match": {"order_count": {"$gte": 2}}},
+#     {"$sort": {"order_count": -1}},
+# ]
+
+# for rad in db.orders.aggregate(pipeline):
+#     print(f"Kund {rad['_id']}: {rad['order_count']} ordrar")
+
 pipeline = [
+    {"$match": {"status": {"$ne": "cancelled"}}},
+    {"$unwind": "$items"},
     {
-        "$group": {
-            "_id": "$category",
-            "cheapest": {"$min": "$price"},
-            "most_expensive": {"$max": "$price"},
+        "$lookup": {
+            "from": "products",
+            "localField": "items.product_id",
+            "foreignField": "_id",
+            "as": "product",
         }
     },
-    {"$sort": {"_id": 1}},
+    {"$unwind": "$product"},
+    {"$group": {"_id": "$product.category", "units_sold": {"$sum": "$items.quantity"}}},
+    {"$sort": {"units_sold": -1}},
 ]
 
-for rad in db.products.aggregate(pipeline):
-    print(f"{rad['_id']}: {rad['cheapest']} – {rad['most_expensive']}")
+for rad in db.orders.aggregate(pipeline):
+    print(f"{rad['_id']}: {rad['units_sold']} sålda")
