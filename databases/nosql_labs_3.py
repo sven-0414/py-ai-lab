@@ -73,21 +73,46 @@ db = client["webshop"]
 # for rad in db.orders.aggregate(pipeline):
 #     print(f"Kund {rad['_id']}: {rad['order_count']} ordrar")
 
+# pipeline = [
+#     {"$match": {"status": {"$ne": "cancelled"}}},
+#     {"$unwind": "$items"},
+#     {
+#         "$lookup": {
+#             "from": "products",
+#             "localField": "items.product_id",
+#             "foreignField": "_id",
+#             "as": "product",
+#         }
+#     },
+#     {"$unwind": "$product"},
+#     {"$group": {"_id": "$product.category", "units_sold": {"$sum": "$items.quantity"}}},
+#     {"$sort": {"units_sold": -1}},
+# ]
+
+# for rad in db.orders.aggregate(pipeline):
+#     print(f"{rad['_id']}: {rad['units_sold']} sålda")
+
+# pipeline = [
+#     {"$unwind": "$items"},
+#     {
+#         "$group": {
+#             "_id": "$status",
+#             "revenue": {
+#                 "$sum": {"$multiply": ["$items.quantity", "$items.unit_price"]}
+#             },
+#         }
+#     },
+#     {"$sort": {"revenue": -1}},
+# ]
+
+# for rad in db.orders.aggregate(pipeline):
+#     print(f"{rad['_id']}: {rad['revenue']} kr")
+
 pipeline = [
-    {"$match": {"status": {"$ne": "cancelled"}}},
-    {"$unwind": "$items"},
-    {
-        "$lookup": {
-            "from": "products",
-            "localField": "items.product_id",
-            "foreignField": "_id",
-            "as": "product",
-        }
-    },
-    {"$unwind": "$product"},
-    {"$group": {"_id": "$product.category", "units_sold": {"$sum": "$items.quantity"}}},
-    {"$sort": {"units_sold": -1}},
+    {"$unwind": "$tags"},
+    {"$group": {"_id": "$tags", "antal": {"$sum": 1}}},
+    {"$sort": {"antal": -1}},
 ]
 
-for rad in db.orders.aggregate(pipeline):
-    print(f"{rad['_id']}: {rad['units_sold']} sålda")
+for rad in db.products.aggregate(pipeline):
+    print(f"{rad['_id']}: {rad['antal']}")
