@@ -1,10 +1,11 @@
 from api_utils import get_json
+from api_utils import post_json
 
 # products = get_json(
 #     "https://fakestoreapi.com/products", params=None, headers=None, timeout=5
 # )
 
-# # print(products[0])
+# print(products[0])
 
 # products = sorted(products, key=lambda p: p["price"])
 
@@ -27,3 +28,14 @@ from api_utils import get_json
 #         lowest_product = p["title"]
 
 # print(f"{counter} products. {lowest_product} has the lowest price: {lowest_price} $.")
+
+# new_product = {
+#     "title": "Nordic Trail Rain Jacket",
+#     "price": 89.5,
+#     "description": "Lightweight waterproof jacket with taped seams and a packable hood. Perfect for autumn walks and windy commutes.",
+#     "image": "https://example.com/images/rain-jacket.png",
+#     "category": "men's clothing",
+# }
+
+# result = post_json("https://fakestoreapi.com/products", new_product)
+# print(result)
