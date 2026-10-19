@@ -39,3 +39,8 @@ from api_utils import post_json
 
 # result = post_json("https://fakestoreapi.com/products", new_product)
 # print(result)
+
+
+# result = post_json("https://fakestoreapi.com/productx", new_product)
+# result = post_json("https://fakestoreapi.com/productx", new_product, timeout=0.001)
+# result = post_json("https://fakestxoreapi.com/productx", new_product)
