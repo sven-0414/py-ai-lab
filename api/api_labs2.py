@@ -1,3 +1,5 @@
+import sys
+
 from api_utils import get_json
 
 city = input("Type a city: ").strip()
@@ -16,6 +18,7 @@ if result and "results" in result:
 
 else:
     print(f"Could not find '{city}'.")
+    sys.exit(1)
 
 weather = get_json(
     "https://api.open-meteo.com/v1/forecast",
