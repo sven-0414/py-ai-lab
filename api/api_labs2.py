@@ -12,6 +12,20 @@ if result and "results" in result:
     longitude = place["longitude"]
     print(f"{place['name']}, {place.get('country', '')}")
     print(f"Latitude: {latitude}")
-    print(f"Longitude: {longitude}")
+    print(f"Longitude: {longitude}\n")
+
 else:
     print(f"Could not find '{city}'.")
+
+weather = get_json(
+    "https://api.open-meteo.com/v1/forecast",
+    params={
+        "latitude": latitude,
+        "longitude": longitude,
+        "current": "temperature_2m,wind_speed_10m",
+    },
+)
+
+print(
+    f"Temperature: {weather['current']['temperature_2m']}{weather['current_units']['temperature_2m']} Wind: {weather['current']['wind_speed_10m']} km/h"
+)
