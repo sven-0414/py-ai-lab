@@ -27,3 +27,4 @@ env/
 
 # database
 webshop.db
+movies.json
