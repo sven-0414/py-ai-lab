@@ -12,6 +12,12 @@ class Movie(BaseModel):
     year: int
 
 
+class MovieUpdate(BaseModel):
+    title: str | None = None
+    director: str | None = None
+    year: int | None = None
+
+
 movies = [
     {"id": 1, "title": "Dune", "director": "Denis Villeneuve", "year": 2021},
     {"id": 2, "title": "Oppenheimer", "director": "Christopher Nolan", "year": 2023},
@@ -61,3 +67,10 @@ def update_movie(movie_id: int, movie: Movie):
 def delete_movie(movie_id: int):
     movie = find_movie(movie_id)
     movies.remove(movie)
+
+
+@app.patch("/movies/{movie_id}")
+def patch_movie(movie_id: int, changes: MovieUpdate):
+    movie = find_movie(movie_id)
+    movie.update(changes.model_dump(exclude_unset=True))
+    return movie
