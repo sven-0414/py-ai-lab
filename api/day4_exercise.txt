@@ -63,12 +63,22 @@ Exercise 9
 A team's Daily Scrum takes 45 minutes. Everyone stands facing the manager and reports what
 they did. What is wrong, and what would you suggest?
 
+- The meeting is far too long.
+- The team is facing the manager which signals the meeting is a status report upward rather than a team conversation.
+- Reports what they did, suggests the focus is backward-looking and individual, not forward-looking and collective.
+
 Exercise 10
 Scrum or Kanban? Choose for each team and explain why.
 a) A team building a new mobile app
 b) An IT support desk
 c) A team fixing bugs in a webshop that is already live
 
+a) Scrum – Building something new from scratch, the work is largely unknown and needs to be discovered as you go.
+b) Kanban – Unpredictable work, Kanban is built for contiuous flow.
+c) Kanban – Bug reports arrive on their own schedule and with different priority. Will not fit a sprint. 
+
 Exercise 11
-do next?
 In planning poker, four developers show 2, 3, 3 and 13 for the same story. What should the team
+do next?
+
+Discuss why and vote again. Nr 13 might know something that noone else does. 
