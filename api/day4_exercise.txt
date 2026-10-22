@@ -24,18 +24,40 @@ Exercise 5
 What is the difference between the Sprint Review and the Sprint Retrospective? Who takes part in
 each?
 
+Sprint Review is about the product
+Sprint Retrospective is about the team and how they work
+
 Exercise 6
 Rewrite these backlog items as user stories (As a ..., I want ..., so that ...):
 a) Add login
 b) Export orders to Excel
 c) Dark mode
 
+a) As a registered user, I want to log in to my email with a password, so I can access my mail.
+b) As a sales administrator, I want to export the order list to Excel, so that I can analyse the 
+figures and share them with colleagues.
+c) As a user with sensitive eyes, I want to switch the interface to a dark theme, so that my eyes 
+aren’t strained.
+
 Exercise 7
 Write three acceptance criteria for this story: As a customer, I want to see my order history, so
 that I can buy the same thing again.
 
+- See a list of own previous orders
+- “Buy again” button.
+- Not logged in is redirected to the login page when trying to open order history
+
 Exercise 8
 Write a Definition of Done for a team of four developers. Include at least five points.
+
+A backlog item is considered Done when all of the following are true:
+
+The code is written and meets the acceptance criteria.
+Automated tests exist and pass.
+The code has been reviewed by at least one other developer.
+The code follows the team’s agreed standards.
+The change is documented.
+The feature has been deployed .
 
 Exercise 9
 A team's Daily Scrum takes 45 minutes. Everyone stands facing the manager and reports what
