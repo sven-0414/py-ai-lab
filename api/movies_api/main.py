@@ -2,8 +2,7 @@ import json
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from fastapi import Depends, HTTPException, Header
-from fastapi import FastAPI
+from fastapi import Depends, HTTPException, Header, FastAPI
 from pydantic import BaseModel
 
 
@@ -118,3 +117,9 @@ def patch_movie(movie_id: int, changes: MovieUpdate):
 
 # Använd PUT när klienten skickar hela det uppdaterade objektet och vill ersätta.
 # Använd PATCH när klienten bara skickar de fält som ska ändras.
+
+
+# If two requests add a movie at the same time, both can read the same next_id
+# and end up with duplicate ids, or write to movies.json simultaneously so a
+# reader gets half-written, corrupt data. Real applications use a database
+# because it handles concurrent reads and writes safely.

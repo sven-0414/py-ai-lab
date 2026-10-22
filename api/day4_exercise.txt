@@ -1,0 +1,52 @@
+Exercise 1
+Explain in your own words why the Waterfall method often goes wrong when building software.
+Give two reasons.
+
+1) It assumes you can specify everything upfront, while in reality everythin changes 
+2) Feedback comes far too late, usually when the project is already finished.
+
+Exercise 2
+Pick two of the four values in the Agile Manifesto. For each one, give an example of what it could
+look like in a real team.
+
+- Individuals and interactions over processes and tools
+- Responding to change over following a plan
+
+Exercise 3
+Who does what? Write Product Owner, Scrum Master or Developers for each line.
+a) Decides the order of the Product Backlog - Product Owner
+b) Decides how to build a feature - Developer
+c) Helps the team when a test server has been down for two days - Scrum Master
+d) Talks to customers about what they need - Product Owner
+e) Coaches the team when the Daily Scrum takes 45 minutes - Scrum Master
+
+Exercise 5
+What is the difference between the Sprint Review and the Sprint Retrospective? Who takes part in
+each?
+
+Exercise 6
+Rewrite these backlog items as user stories (As a ..., I want ..., so that ...):
+a) Add login
+b) Export orders to Excel
+c) Dark mode
+
+Exercise 7
+Write three acceptance criteria for this story: As a customer, I want to see my order history, so
+that I can buy the same thing again.
+
+Exercise 8
+Write a Definition of Done for a team of four developers. Include at least five points.
+
+Exercise 9
+A team's Daily Scrum takes 45 minutes. Everyone stands facing the manager and reports what
+they did. What is wrong, and what would you suggest?
+
+Exercise 10
+Scrum or Kanban? Choose for each team and explain why.
+a) A team building a new mobile app
+b) An IT support desk
+c) A team fixing bugs in a webshop that is already live
+
+Exercise 11
+do next?
+In planning poker, four developers show 2, 3, 3 and 13 for the same story. What should the team
